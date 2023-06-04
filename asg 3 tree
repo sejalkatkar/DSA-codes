@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct Node {
+  string name;
+  vector<Node*> children;
+};
+
+Node* createNode(string name) {
+  Node* node = new Node();
+  node->name = name;
+  return node;
+}
+
+void addNode(Node* parent, Node* child) {
+  parent->children.push_back(child);
+}
+
+void printTree(Node* node) {
+  cout << node->name << endl;
+  for (Node* child : node->children) {
+    printTree(child);
+  }
+}
+
+int main() {
+  
+  Node* root = createNode("Book");
+
+  
+  Node* chapter1 = createNode("Chapter 1");
+  Node* chapter2 = createNode("Chapter 2");
+  Node* chapter3 = createNode("Chapter 3");
+
+  
+  addNode(root, chapter1);
+  addNode(root, chapter2);
+  addNode(root, chapter3);
+
+  
+  Node* section11 = createNode("Section 1.1");
+  Node* section12 = createNode("Section 1.2");
+  Node* section21 = createNode("Section 2.1");
+  Node* section22 = createNode("Section 2.2");
+  Node* section31 = createNode("Section 3.1");
+  Node* section32 = createNode("Section 3.2");
+
+  
+  addNode(chapter1, section11);
+  addNode(chapter1, section12);
+  addNode(chapter2, section21);
+  addNode(chapter2, section22);
+  addNode(chapter3, section31);
+  addNode(chapter3, section32);
+
+  
+  printTree(root);
+
+
+  return 0;
+}
